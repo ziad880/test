@@ -255,6 +255,9 @@ justify-content: center;
 .button-container button:focus {
     outline: none; /* إزالة الإطار الخارجي عند النقر */
 }
+button {
+    -webkit-tap-highlight-color: transparent; /* إزالة تأثير النقر */
+}
 
 @media (max-width: 600px) {
     .button-container {

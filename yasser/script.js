@@ -352,3 +352,39 @@ slider.addEventListener('touchmove', (e) => {
     const walk = (x - startX) * 2; // سرعة التمرير
     slider.scrollLeft = scrollLeft - walk;
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+    const audioPlayer = document.getElementById('audio');
+
+    // تأكيد أن عناصر التحكم موجودة
+    if (audioPlayer) {
+        // تقديم الصوت بمقدار 10 ثوانٍ
+        document.getElementById('forward').addEventListener('click', () => {
+            audioPlayer.currentTime = Math.min(audioPlayer.currentTime + 10, audioPlayer.duration);
+        });
+
+        // تأخير الصوت بمقدار 10 ثوانٍ
+        document.getElementById('rewind').addEventListener('click', () => {
+            audioPlayer.currentTime = Math.max(audioPlayer.currentTime - 10, 0);
+        });
+    }
+    });
+    function loadSong(song) {
+        title.innerText = song.title;  // تحديث عنوان الأغنية فقط
+        audio.src = song.file;
+        audio.load();  // تحميل الصوت فقط للأغنية الحالية
+    
+        // إزالة النمط النشط من جميع العناصر
+        document.querySelectorAll('.song-item').forEach(item => {
+            item.classList.remove('active');
+        });
+    
+        // إضافة النمط النشط للأغنية الحالية
+        const activeSongItem = document.querySelector(`.song-item[data-song-index="${songIndex}"]`);
+        if (activeSongItem) {
+            activeSongItem.classList.add('active');
+            // تمرير الشريط لعرض العنصر النشط
+            activeSongItem.scrollIntoView({ behavior: 'smooth', inline: 'center' });
+        }
+    }
+    

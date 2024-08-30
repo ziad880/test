@@ -250,7 +250,7 @@ justify-content: center;
 }
 
 .button-container button:active {
-    transform: scale(0.95); /* تقليل حجم الزر قليلاً عند الضغط عليه */
+    transform: scale(1.5); 
 }
 .button-container button:focus {
     outline: none; /* إزالة الإطار الخارجي عند النقر */

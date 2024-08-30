@@ -208,8 +208,9 @@ html, body {
     margin:  0;
 }
 #back{
-    font-size: 1.9em;
-    margin: 10px;
+    font-size: 1.5em;
+    margin-bottom: 0em;
+    margin-top: 1.5em;
 }
 a {
     -webkit-tap-highlight-color: transparent;

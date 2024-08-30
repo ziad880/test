@@ -134,7 +134,7 @@ button:hover {
     overflow: hidden; /* إخفاء شريط التمرير ومنع التمرير */
     white-space: nowrap; /* منع التفاف النصوص */
     -webkit-overflow-scrolling: touch; /* تمكين التمرير السلس على الأجهزة اللمسية */
-    padding: 10px;
+    padding: 3px;
     margin: 0;
     scrollbar-width: none; /* إخفاء شريط التمرير في Firefox */
     width: 100%; /* تأكد من أن الحاوية تأخذ عرضًا كاملًا */

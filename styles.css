@@ -227,3 +227,8 @@ a {
     transform: scale(1.15); /* تكبير النص بنسبة 10% */
     text-shadow: 0 3px 10px green; /* إضافة ظل أبيض للنص */
 }
+.song-list {
+    overflow-x: auto; /* السماح بالتمرير الأفقي */
+    scroll-behavior: smooth; /* التمرير السلس لجميع المتصفحات */
+    -webkit-overflow-scrolling: touch; /* تحسين التمرير للأجهزة التي تعمل باللمس مثل iPhone */
+}

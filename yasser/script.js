@@ -369,4 +369,26 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
     });
-  
+    function loadSong(song) {
+        title.innerText = song.title;  // تحديث عنوان الأغنية فقط
+        audio.src = song.file;
+        audio.load();  // تحميل الصوت فقط للأغنية الحالية
+    
+        // إزالة النمط النشط من جميع العناصر
+        document.querySelectorAll('.song-item').forEach(item => {
+            item.classList.remove('active');
+        });
+    
+        // إضافة النمط النشط للأغنية الحالية
+        const activeSongItem = document.querySelector(`.song-item[data-song-index="${songIndex}"]`);
+        if (activeSongItem) {
+            activeSongItem.classList.add('active');
+            // تمرير الشريط لعرض العنصر النشط بدون تغيير مواقع العناصر الأخرى
+            activeSongItem.scrollIntoView({ 
+                behavior: 'smooth', 
+                block: 'nearest', // يضمن أن التمرير يحدث فقط عند الضرورة
+                inline: 'center'  // الحفاظ على العنصر في المركز أفقيًا
+            });
+        }
+    }
+    

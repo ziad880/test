@@ -18,7 +18,6 @@ let isDown = false;
 let startX;
 let scrollLeft;
 
-// أحداث السحب للشرائح
 slider.addEventListener('mousedown', (e) => {
     isDown = true;
     slider.classList.add('active');
@@ -43,7 +42,6 @@ slider.addEventListener('mousemove', (e) => {
     const walk = (x - startX) * 2; // سرعة التمرير
     slider.scrollLeft = scrollLeft - walk;
 });
-
 // قائمة الأغاني
 const songs = [
     { title: 'الفاتحة', file: 'voice/001.mp3' },
@@ -142,128 +140,255 @@ const songs = [
     { title: 'الشرح', file: 'voice/094.mp3' },
     { title: 'التين', file: 'voice/095.mp3' },
     { title: 'العلق', file: 'voice/096.mp3' },
-    { title: 'القدير', file: 'voice/097.mp3' },
-    { title: 'الزلزلة', file: 'voice/098.mp3' },
-    { title: 'العاديات', file: 'voice/099.mp3' },
-    { title: 'القارعة', file: 'voice/100.mp3' },
-    { title: 'التكاثر', file: 'voice/101.mp3' },
-    { title: 'العصر', file: 'voice/102.mp3' },
-    { title: 'الهمزة', file: 'voice/103.mp3' },
-    { title: 'الفيل', file: 'voice/104.mp3' },
-    { title: 'قريش', file: 'voice/105.mp3' },
-    { title: 'الماعون', file: 'voice/106.mp3' },
-    { title: 'الكافرون', file: 'voice/107.mp3' },
-    { title: 'النصر', file: 'voice/108.mp3' },
-    { title: 'المسد', file: 'voice/109.mp3' },
-    { title: 'الإخلاص', file: 'voice/110.mp3' },
-    { title: 'الفلق', file: 'voice/111.mp3' },
-    { title: 'الناس', file: 'voice/112.mp3' },
+    { title: 'القدر', file: 'voice/097.mp3' },
+    { title: 'البينة', file: 'voice/098.mp3' },
+    { title: 'الزلزلة', file: 'voice/099.mp3' },
+    { title: 'العاديات', file: 'voice/100.mp3' },
+    { title: 'القارعة', file: 'voice/101.mp3' },
+    { title: 'التكاثر', file: 'voice/102.mp3' },
+    { title: 'العصر', file: 'voice/103.mp3' },
+    { title: 'الهمزة', file: 'voice/104.mp3' },
+    { title: 'الفيل', file: 'voice/105.mp3' },
+    { title: 'قريش', file: 'voice/106.mp3' },
+    { title: 'الماعون', file: 'voice/107.mp3' },
+    { title: 'الكوثر', file: 'voice/108.mp3' },
+    { title: 'الكافرون', file: 'voice/109.mp3' },
+    { title: 'النصر', file: 'voice/110.mp3' },
+    { title: 'المسد', file: 'voice/111.mp3' },
+    { title: 'الإخلاص', file: 'voice/112.mp3' },
+    { title: 'الفلق', file: 'voice/113.mp3' },
+    { title: 'الناس', file: 'voice/114.mp3' }
 ];
 
-// المتغيرات
-let currentSongIndex = 0;
-let isPlaying = false;
+let songIndex = 0;
 let isRepeating = false;
 let isShuffling = false;
 
-// تحميل الأغنية الأولى عند بدء التشغيل
-loadSong(songs[currentSongIndex]);
-
-// تشغيل / إيقاف
-function togglePlayPause() {
-    if (isPlaying) {
-        audio.pause();
-        playBtn.textContent = 'تشغيل';
-    } else {
-        audio.play();
-        playBtn.textContent = 'إيقاف';
-    }
-    isPlaying = !isPlaying;
-}
-
 // تحميل الأغنية
 function loadSong(song) {
-    title.textContent = song.title;
+    title.innerText = song.title;  // تحديث عنوان الأغنية فقط
     audio.src = song.file;
-    albumCover.src = 'cover.jpg'; // يجب وضع صورة الغلاف المناسبة هنا
-
-    if (isPlaying) {
-        audio.play();
-    }
+    audio.load();  // تحميل الصوت فقط للأغنية الحالية
 }
 
-// الانتقال للأغنية السابقة
-function prevSong() {
-    currentSongIndex--;
-    if (currentSongIndex < 0) {
-        currentSongIndex = songs.length - 1;
-    }
-    loadSong(songs[currentSongIndex]);
+// تشغيل الأغنية
+function playSong() {
+    audio.play();
+    playBtn.innerHTML = '<i class="fas fa-pause"></i>';
 }
 
-// الانتقال للأغنية التالية
+// إيقاف الأغنية
+function pauseSong() {
+    audio.pause();
+    playBtn.innerHTML = '<i class="fas fa-play"></i>';
+}
+// الأغنية التالية
 function nextSong() {
-    currentSongIndex++;
-    if (currentSongIndex >= songs.length) {
-        currentSongIndex = 0;
-    }
-    loadSong(songs[currentSongIndex]);
+    songIndex = (songIndex - 1 + songs.length) % songs.length;
+    loadSong(songs[songIndex]);
+    playSong();
 }
 
-// تكرار الأغنية
+// الأغنية السابقة
+function prevSong() {
+    songIndex = isShuffling ? getRandomSongIndex() : (songIndex + 1) % songs.length;
+    loadSong(songs[songIndex]);
+    playSong();
+}
+
+// شريط التقدم
+function updateProgress(e) {
+    const { duration, currentTime } = e.srcElement;
+    const progressPercent = (currentTime / duration) * 100;
+    progress.style.width = `${progressPercent}%`;
+
+    // تحديث الوقت الحالي والوقت الإجمالي
+    currentTimeElem.innerText = formatTime(currentTime);
+    totalTimeElem.innerText = formatTime(duration);
+}
+
+// تعيين التقدم
+function setProgress(e) {
+    const width = this.clientWidth;
+    const clickX = e.offsetX;
+    const duration = audio.duration;
+
+    audio.currentTime = (clickX / width) * duration;
+}
+
+// تبديل تشغيل متكرر
 function toggleRepeat() {
     isRepeating = !isRepeating;
     repeatBtn.classList.toggle('active', isRepeating);
+    if (isRepeating) {
+        isShuffling = false;
+        shuffleBtn.classList.remove('active');
+    }
 }
 
-// تبديل الترتيب
+// تبديل التبديل التلقائي
 function toggleShuffle() {
     isShuffling = !isShuffling;
     shuffleBtn.classList.toggle('active', isShuffling);
+    if (isShuffling) {
+        isRepeating = false;
+        repeatBtn.classList.remove('active');
+    }
 }
 
-// تحديث الوقت
-function updateTime() {
-    const currentTime = audio.currentTime;
-    const duration = audio.duration;
-    
-    currentTimeElem.textContent = formatTime(currentTime);
-    totalTimeElem.textContent = formatTime(duration);
-
-    progress.style.width = `${(currentTime / duration) * 100}%`;
+// تشغيل أغنية عشوائية
+function getRandomSongIndex() {
+    let randomIndex;
+    do {
+        randomIndex = Math.floor(Math.random() * songs.length);
+    } while (randomIndex === songIndex);
+    return randomIndex;
 }
 
-// تنسيق الوقت
-function formatTime(time) {
-    const minutes = Math.floor(time / 60);
-    const seconds = Math.floor(time % 60);
-    return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+function shuffleSong() {
+    songIndex = getRandomSongIndex();
+    loadSong(songs[songIndex]);
+    playSong();
 }
 
-// التعامل مع النقر على شريط التقدم
-progressContainer.addEventListener('click', (e) => {
-    const { offsetX } = e;
-    const width = progressContainer.clientWidth;
-    const duration = audio.duration;
-    audio.currentTime = (offsetX / width) * duration;
-});
-
-// أحداث التشغيل والإيقاف
-audio.addEventListener('timeupdate', updateTime);
+// التعامل مع انتهاء الأغنية
 audio.addEventListener('ended', () => {
     if (isRepeating) {
-        audio.currentTime = 0;
-        audio.play();
-    } else if (isShuffling) {
-        currentSongIndex = Math.floor(Math.random() * songs.length);
-        loadSong(songs[currentSongIndex]);
+        playSong();
     } else {
-        nextSong();
+        prevSong();
     }
 });
 
-playBtn.addEventListener('click', togglePlayPause);
+// تنسيق الوقت
+function formatTime(seconds) {
+    const minutes = Math.floor(seconds / 60);
+    const secs = Math.floor(seconds % 60);
+    return `${String(minutes).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+}
+
+// تحديث شريط التقدم عند تشغيل الأغنية
+audio.addEventListener('timeupdate', updateProgress);
+
+// تعيين التقدم عند النقر على شريط التقدم
+progressContainer.addEventListener('click', setProgress);
+
+// تعيين وظائف الأزرار
+playBtn.addEventListener('click', () => {
+    if (audio.paused) {
+        playSong();
+    } else {
+        pauseSong();
+    }
+});
+
 prevBtn.addEventListener('click', prevSong);
 nextBtn.addEventListener('click', nextSong);
 repeatBtn.addEventListener('click', toggleRepeat);
 shuffleBtn.addEventListener('click', toggleShuffle);
+
+// تحميل الأغنية الأولى عند التحميل
+loadSong(songs[songIndex]);
+// تعيين الصورة واسم الفنان مرة واحدة
+albumCover.src = 'yasser.jpg'; // الصورة المشتركة
+artist.innerText = ' ياسر الدوسري ';   // الفنان المشترك
+
+// التعامل مع عناصر الأغاني
+const songButtons = document.querySelectorAll('.song-item');
+
+songButtons.forEach(button => {
+    button.addEventListener('click', (e) => {
+        const index = parseInt(e.target.getAttribute('data-song-index'), 10);
+        if (!isNaN(index)) {
+            songIndex = index; // تعيين مؤشر الأغنية الحالية
+            loadSong(songs[songIndex]);
+            playSong();
+        }
+    });
+});
+// التعامل مع السحب في شريط الأغاني على الأجهزة التي تعمل باللمس
+slider.addEventListener('mousedown', (e) => {
+    isDown = true;
+    slider.classList.add('active');
+    startX = e.pageX - slider.offsetLeft;
+    scrollLeft = slider.scrollLeft;
+});
+
+slider.addEventListener('mouseleave', () => {
+    isDown = false;
+    slider.classList.remove('active');
+});
+
+slider.addEventListener('mouseup', () => {
+    isDown = false;
+    slider.classList.remove('active');
+});
+
+slider.addEventListener('mousemove', (e) => {
+    if (!isDown) return; // إذا لم يكن الماوس مضغوطًا، لا تفعل شيء
+    e.preventDefault();
+    const x = e.pageX - slider.offsetLeft;
+    const walk = (x - startX) * 2; // سرعة التمرير
+    slider.scrollLeft = scrollLeft - walk;
+});
+
+// إضافة الأحداث لللمس على الأجهزة المحمولة
+slider.addEventListener('touchstart', (e) => {
+    isDown = true;
+    slider.classList.add('active');
+    startX = e.touches[0].pageX - slider.offsetLeft;
+    scrollLeft = slider.scrollLeft;
+});
+
+slider.addEventListener('touchend', () => {
+    isDown = false;
+    slider.classList.remove('active');
+});
+
+slider.addEventListener('touchmove', (e) => {
+    if (!isDown) return; // إذا لم يكن اللمس مستمرًا، لا تفعل شيء
+    e.preventDefault();
+    const x = e.touches[0].pageX - slider.offsetLeft;
+    const walk = (x - startX) * 2; // سرعة التمرير
+    slider.scrollLeft = scrollLeft - walk;
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    const audioPlayer = document.getElementById('audio');
+
+    // تأكيد أن عناصر التحكم موجودة
+    if (audioPlayer) {
+        // تقديم الصوت بمقدار 10 ثوانٍ
+        document.getElementById('forward').addEventListener('click', () => {
+            audioPlayer.currentTime = Math.min(audioPlayer.currentTime + 10, audioPlayer.duration);
+        });
+
+        // تأخير الصوت بمقدار 10 ثوانٍ
+        document.getElementById('rewind').addEventListener('click', () => {
+            audioPlayer.currentTime = Math.max(audioPlayer.currentTime - 10, 0);
+        });
+    }
+    });
+    function loadSong(song) {
+        title.innerText = song.title;  // تحديث عنوان الأغنية فقط
+        audio.src = song.file;
+        audio.load();  // تحميل الصوت فقط للأغنية الحالية
+    
+        // إزالة النمط النشط من جميع العناصر
+        document.querySelectorAll('.song-item').forEach(item => {
+            item.classList.remove('active');
+        });
+    
+        // إضافة النمط النشط للأغنية الحالية
+        const activeSongItem = document.querySelector(`.song-item[data-song-index="${songIndex}"]`);
+        if (activeSongItem) {
+            activeSongItem.classList.add('active');
+            // تمرير الشريط لعرض العنصر النشط بدون تغيير مواقع العناصر الأخرى
+            activeSongItem.scrollIntoView({ 
+                behavior: 'smooth', 
+                block: 'nearest', // يضمن أن التمرير يحدث فقط عند الضرورة
+                inline: 'center'  // الحفاظ على العنصر في المركز أفقيًا
+            });
+        }
+    }
+    

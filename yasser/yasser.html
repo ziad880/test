@@ -8,11 +8,16 @@
     <link rel="stylesheet" href="../styles.css">
 </head>
 <body style="justify-content: center;">
-    <div id="back"><a href="../index.html">
-        <i class="fa-solid fa-right-to-bracket fa-fade fa-lg" style="color: #ffffff;"></i>
-    </a></div>
+    <!-- Back Navigation -->
+    <div id="back">
+        <a href="../index.html">
+            <i class="fa-solid fa-right-to-bracket fa-fade fa-lg" style="color: #ffffff;"></i>
+        </a>
+    </div>
+
+    <!-- Song Slider -->
     <div style="margin-top: -10px;" class="song-slider-container">
-    <ul  id="song-buttons" class="song-slider">
+        <ul id="song-buttons" class="song-slider">
             <li data-song-index="0" class="song-item">الفاتحة</li>
             <li data-song-index="1" class="song-item">البقرة</li>
             <li data-song-index="2" class="song-item">آل عمران</li>
@@ -109,63 +114,49 @@
             <li data-song-index="93" class="song-item">الشرح</li>
             <li data-song-index="94" class="song-item">التين</li>
             <li data-song-index="95" class="song-item">العلق</li>
-            <li data-song-index="96" class="song-item">القدر</li>
-            <li data-song-index="97" class="song-item">البينة</li>
-            <li data-song-index="98" class="song-item">الزلزلة</li>
-            <li data-song-index="99" class="song-item">العاديات</li>
-            <li data-song-index="100" class="song-item">القارعة</li>
-            <li data-song-index="101" class="song-item">التكاثر</li>
-            <li data-song-index="102" class="song-item">العصر</li>
-            <li data-song-index="103" class="song-item">الهمزة</li>
-            <li data-song-index="104" class="song-item">الفيل</li>
-            <li data-song-index="105" class="song-item">قريش</li>
-            <li data-song-index="106" class="song-item">الماعون</li>
-            <li data-song-index="107" class="song-item">الكوثر</li>
-            <li data-song-index="108" class="song-item">الكافرون</li>
-            <li data-song-index="109" class="song-item">النصر</li>
-            <li data-song-index="110" class="song-item">المسد</li>
-            <li data-song-index="111" class="song-item">الإخلاص</li>
-            <li data-song-index="112" class="song-item">الفلق</li>
+            <li data-song-index="96" class="song-item">القدس</li>
+            <li data-song-index="97" class="song-item">النازعات</li>
+            <li data-song-index="98" class="song-item">الإنفطار</li>
+            <li data-song-index="99" class="song-item">الإنشراح</li>
+            <li data-song-index="100" class="song-item">اللمز</li>
+            <li data-song-index="101" class="song-item">المرسلات</li>
+            <li data-song-index="102" class="song-item">النكث</li>
+            <li data-song-index="103" class="song-item">النازعات</li>
+            <li data-song-index="104" class="song-item">الليل</li>
+            <li data-song-index="105" class="song-item">الفجر</li>
+            <li data-song-index="106" class="song-item">البلد</li>
+            <li data-song-index="107" class="song-item">الشمس</li>
+            <li data-song-index="108" class="song-item">الليل</li>
+            <li data-song-index="109" class="song-item">الضحى</li>
+            <li data-song-index="110" class="song-item">الشرح</li>
+            <li data-song-index="111" class="song-item">التين</li>
+            <li data-song-index="112" class="song-item">العلق</li>
             <li data-song-index="113" class="song-item">الناس</li>
         </ul>
-</div>
-<div class="song-slider-container">
-    
-    <div id="song-list"></div>
-</div>
-        <div class="player-container">
-            <img id="album-cover" src="" alt="Album Cover" data-loaded="false">
-            <h2 id="title"></h2>
-            <h3 id="artist"></h3>
-            <audio id="audio"></audio>
-            <div id="time">
+    </div>
+
+    <!-- Song List -->
+    <div class="song-slider-container">
+        <div id="song-list"></div>
+    </div>
+
+    <!-- Music Player -->
+    <div class="player-container">
+        <img id="album-cover" src="" alt="Album Cover" data-loaded="false">
+        <h2 id="title"></h2>
+        <h3 id="artist"></h3>
+        <audio id="audio"></audio>
+        <div id="time">
             <span id="current-time">00:00</span>
-            <span id="total-time">00:00</span>
-            </div>
-            <div class="progress-container">
-                <div id="progress" class="progress"></div>
-            
-            </div>
-            <div class="button-container">
-                <button style="font-size: 1.3em" id="prev"><i class="fa-solid fa-forward-fast fa-flip-horizontal"></i></button>
-                <button style="font-size: 1.3em" id="rewind"><i class="fas fa-undo"></i><span class="icon-text"></span></button> <!-- زر التراجع -->
-                <button style="font-size: 2em" id="play"><i class="fas fa-play"></i></button>
-                <button style="font-size: 1.3em" id="forward"><i class="fas fa-redo"></i></button> <!-- زر التقديم -->
-                <button style="font-size: 1.3em" id="next"><i class="fa-solid fa-forward-fast"></i></button>
-            </div>
-            
-            <div id="r">
-                <button id="repeat"><i class="fa-solid fa-repeat"></i></button>
-            <button id="shuffle"><i class="fas fa-random"></i></button>
-            </div>
-            </div>
-            <div id="by"><p>By Ziad Ayman</p></div>
-            <div class="socials">
-                <a href="https://www.linkedin.com/in/ziad-ayman-1313682a4/"> <i class="fa-brands fa-linkedin"style="color: #ffffffd0;"></i></a>
-                <a href="https://www.instagram.com/ziad_2ymn/"> <i class="fa-brands fa-instagram"style="color: #ffffffd0;"></i></a>
-                <a href="https://www.facebook.com/ziad.74.72"> <i class="fa-brands fa-facebook" style="color: #ffffffd0;"></i></a>
-                <a href="https://www.tiktok.com/@eng._ziad"> <i class="fa-brands fa-tiktok"style="color: #ffffffd0;"></i></a>
-                </div>
-    <script src="script.js"></script>
+            <span id="duration">00:00</span>
+        </div>
+        <div id="controls">
+            <button id="play-pause">Play</button>
+            <button id="next">Next</button>
+            <button id="prev">Previous</button>
+        </div>
+    </div>
+
+    <script src="../scripts.js"></script>
 </body>
 </html>

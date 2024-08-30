@@ -214,10 +214,12 @@ a {
     white-space: nowrap; /* منع التفاف العناصر */
 }
 
-.song-item {
-    display: inline-block; /* عرض العناصر بشكل متجاور */
-    margin-right: 10px; /* مسافة بين العناصر */
+.song-list {
+    overflow-x: auto; /* السماح بالتمرير الأفقي */
+    scroll-behavior: smooth; /* التمرير السلس لجميع المتصفحات */
+    -webkit-overflow-scrolling: touch; /* تحسين التمرير للأجهزة التي تعمل باللمس مثل iPhone */
 }
+
 .song-item.active {
     color: rgb(255, 255, 255); /* تغيير لون النص إلى الأخضر */
     font-weight: bold; /* جعل النص عريضًا لجعله بارزًا */

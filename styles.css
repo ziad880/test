@@ -140,7 +140,7 @@ button:hover {
     display: none;
 }
 .song-slider {
-    display: flex; /* استخدام flexbox لعرض العناصر في صف */
+
     list-style: none; /* إزالة نقاط القائمة */
     padding: 0;
     margin: 0;

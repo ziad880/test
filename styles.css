@@ -253,7 +253,11 @@ a {
 .button-container button:focus {
     outline: none; /* إزالة الإطار الخارجي عند النقر */
 }
-
+.fa-lg {
+    font-size: 1.25em;
+    line-height: 2.05em;
+    vertical-align: -.075em;
+}
 @media (max-width: 600px) {
     .button-container {
         padding: 5px; /* تقليل التباعد الداخلي للحاوية على الشاشات الأصغر */

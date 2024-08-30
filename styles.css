@@ -136,6 +136,7 @@ button:hover {
     -webkit-overflow-scrolling: touch; /* تمكين التمرير السلس على الأجهزة اللمسية */
     padding: 10px;
     margin: 0;
+    margin-top: -15px;
     scrollbar-width: none; /* إخفاء شريط التمرير في Firefox */
     width: 100%; /* تأكد من أن الحاوية تأخذ عرضًا كاملًا */
     box-sizing: border-box; /* تضمين padding و border في العرض الإجمالي */
@@ -209,7 +210,7 @@ html, body {
 }
 #back{
     font-size: 1.5em;
-
+    margin: 10px;
 }
 a {
     -webkit-tap-highlight-color: transparent;
@@ -241,7 +242,7 @@ a {
     margin: 0 5px; /* إضافة مسافات بين الأزرار */
     max-width: 50px; /* تحديد الحد الأقصى لعرض الأزرار */
     max-height: 50px; /* تحديد الحد الأقصى لارتفاع الأزرار */
-    transition: transform 0.2s ease; /* تطبيق التحويل (التحجيم) بشكل سلس */
+
     border: none; /* إزالة الإطار الافتراضي للأزرار */
     border-radius: 5px; /* جعل زوايا الأزرار مستديرة */
     transition: transform 0.2s ease; /* إضافة تأثير عند التفاعل مع الأزرار */
@@ -253,11 +254,7 @@ a {
 .button-container button:focus {
     outline: none; /* إزالة الإطار الخارجي عند النقر */
 }
-.fa-lg {
-    font-size: 1.25em;
-    line-height: 2.05em;
-    vertical-align: -.075em;
-}
+
 @media (max-width: 600px) {
     .button-container {
         padding: 5px; /* تقليل التباعد الداخلي للحاوية على الشاشات الأصغر */

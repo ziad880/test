@@ -28,7 +28,7 @@ body {
     text-align: center;
     margin-bottom: 0px;
     max-width: 300px;
-    margin-top: -10px;
+    margin-top: -20px;
 }
 .player-container1 {
     background-color: rgb(56 62 76 / 14%);
@@ -134,7 +134,7 @@ button:hover {
     overflow: hidden; /* إخفاء شريط التمرير ومنع التمرير */
     white-space: nowrap; /* منع التفاف النصوص */
     -webkit-overflow-scrolling: touch; /* تمكين التمرير السلس على الأجهزة اللمسية */
-    padding: 10px;
+    padding: 3px;
     margin: 0;
     scrollbar-width: none; /* إخفاء شريط التمرير في Firefox */
     width: 100%; /* تأكد من أن الحاوية تأخذ عرضًا كاملًا */

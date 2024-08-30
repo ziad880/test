@@ -241,7 +241,7 @@ a {
     margin: 0 5px; /* إضافة مسافات بين الأزرار */
     max-width: 50px; /* تحديد الحد الأقصى لعرض الأزرار */
     max-height: 50px; /* تحديد الحد الأقصى لارتفاع الأزرار */
-    background-color: #f0f0f0; /* لون خلفية للأزرار */
+
     border: none; /* إزالة الإطار الافتراضي للأزرار */
     border-radius: 5px; /* جعل زوايا الأزرار مستديرة */
     transition: transform 0.2s ease; /* إضافة تأثير عند التفاعل مع الأزرار */
@@ -250,6 +250,10 @@ a {
 .button-container button:active {
     transform: scale(0.95); /* تقليل حجم الزر قليلاً عند الضغط عليه */
 }
+.button-container button:focus {
+    outline: none; /* إزالة الإطار الخارجي عند النقر */
+}
+
 @media (max-width: 600px) {
     .button-container {
         padding: 5px; /* تقليل التباعد الداخلي للحاوية على الشاشات الأصغر */

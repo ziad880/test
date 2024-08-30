@@ -242,7 +242,8 @@ a {
     margin: 0 5px; /* إضافة مسافات بين الأزرار */
     max-width: 50px; /* تحديد الحد الأقصى لعرض الأزرار */
     max-height: 50px; /* تحديد الحد الأقصى لارتفاع الأزرار */
-
+display: flex;
+justify-content: center;
     border: none; /* إزالة الإطار الافتراضي للأزرار */
     border-radius: 5px; /* جعل زوايا الأزرار مستديرة */
     transition: transform 0.2s ease; /* إضافة تأثير عند التفاعل مع الأزرار */

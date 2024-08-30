@@ -66,11 +66,15 @@ body {
 }
 /* حاوية الأزرار */
 .button-container {
-    display: flex;
-    justify-content: center; /* توسيط الأزرار أفقياً */
-    align-items: center; /* توسيط الأزرار عمودياً */
-    gap: 1px; /* مسافة بين الأزرار */
+    display: flex; /* استخدام Flexbox لتوزيع الأزرار بالتساوي */
+    justify-content: space-between; /* توزيع الأزرار بالتساوي مع الحفاظ على المسافات */
+    align-items: center; /* محاذاة العناصر بشكل عمودي في المنتصف */
+    width: 100%; /* التأكد من أن الحاوية تأخذ العرض الكامل المتاح */
+    padding: 10px; /* إضافة تباعد داخلي حول الأزرار */
+    box-sizing: border-box; /* التأكد من أن التباعد الداخلي لا يؤثر على العرض الكلي */
+    overflow: hidden; /* منع العناصر من الخروج خارج الحاوية */
 }
+
 .progress-container {
     background: #404040;
     border-radius: 5px;
@@ -231,4 +235,28 @@ a {
     overflow-x: auto; /* السماح بالتمرير الأفقي */
     scroll-behavior: smooth; /* التمرير السلس لجميع المتصفحات */
     -webkit-overflow-scrolling: touch; /* تحسين التمرير للأجهزة التي تعمل باللمس مثل iPhone */
+}
+.button-container button {
+    flex: 1; /* جعل الأزرار تأخذ حيزًا متساويًا داخل الحاوية */
+    margin: 0 5px; /* إضافة مسافات بين الأزرار */
+    max-width: 50px; /* تحديد الحد الأقصى لعرض الأزرار */
+    max-height: 50px; /* تحديد الحد الأقصى لارتفاع الأزرار */
+    background-color: #f0f0f0; /* لون خلفية للأزرار */
+    border: none; /* إزالة الإطار الافتراضي للأزرار */
+    border-radius: 5px; /* جعل زوايا الأزرار مستديرة */
+    transition: transform 0.2s ease; /* إضافة تأثير عند التفاعل مع الأزرار */
+}
+
+.button-container button:active {
+    transform: scale(0.95); /* تقليل حجم الزر قليلاً عند الضغط عليه */
+}
+@media (max-width: 600px) {
+    .button-container {
+        padding: 5px; /* تقليل التباعد الداخلي للحاوية على الشاشات الأصغر */
+    }
+
+    .button-container button {
+        max-width: 40px; /* تقليل عرض الأزرار قليلاً للشاشات الأصغر */
+        max-height: 40px; /* تقليل ارتفاع الأزرار قليلاً للشاشات الأصغر */
+    }
 }
